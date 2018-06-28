@@ -1,0 +1,11 @@
+bumpversion
+check-manifest
+coverage
+pytest
+pytest-cov
+requests
+responses
+sphinx
+sphinx-autobuild
+sphinx_rtd_theme
+tox

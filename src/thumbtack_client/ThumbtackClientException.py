@@ -1,0 +1,2 @@
+class ThumbtackClientException(Exception):
+    pass
