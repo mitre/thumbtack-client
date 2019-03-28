@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/mitre/thumbtack-client.svg?branch=master
+    :target: https://travis-ci.org/mitre/thumbtack-client
+
 thumbtack-client
 ================
 
