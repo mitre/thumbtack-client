@@ -4,7 +4,7 @@
 thumbtack-client
 ================
 
-A client for communicating with a Thumbtack server.
+A client for communicating with a Thumbtack server (https://github.com/mitre/thumbtack).
 
 Documentation is available in the ``docs/`` directory or online at
 https://thumbtack.readthedocs.io/en/latest.
@@ -24,7 +24,3 @@ more information.
 RELEASE STATEMENT
 -----------------
 Approved for Public Release; Distribution Unlimited. Public Release Case Number 19-0358.
-
-
-.. |imagemounter| replace:: ``imagemounter``
-.. _imagemounter: https://imagemounter.readthedocs.io/en/latest/
