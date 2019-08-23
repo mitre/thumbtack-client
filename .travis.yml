@@ -24,9 +24,9 @@ deploy:
     on:
       tags: true
   - provider: pypi
-    user: jondricek
+    user: __token__
     password:
-      secure: lFYvZzL14k6p0Gy8FNGfWlyoJObtRBSfL+2svJ+TuECP9pPujCYY/+F/kljZtIqDSW9BAUeZDuMoh4MKl+AumnKV1dU9urZw4/8oVRYIruONJfM20NmU/IVA9jn7ShKJQvJjTLtZDA4FCpXtCefT8ADwq1Qnb7X4qNOmWJ573Sr1M5hMelAJFSydZOTku4Pt/Je6KVfVxX3rEeq84A4CUYELg4tT/WkfSTuE+kuZQfPg9qov5or9zmQZKFSbXUewoC0OAvipRfdurR6gbJKI740HG1yqyBjTjqhBuQRtQ7HTGbCzX+VTae0fUbSE48DwWoJUJASdie+9FFrJIm5E/useWhWtFbFXgfK2zWvl3IKZbau0C/pszH+VYsnVI5ZH4/S2BuPlaUINWQKJi9GUCyrDRTq8AdjmMAzWflcsXQFZ8cMxWlU26KxV+GWlkqOGDvWfI7gTVrUuHDPfq4rGWAS8AH5OGAHdxMU7tKHpc33GPie+4PCkAD8BRuq0sqzI5CFeVpZzHg3S4btCVDhEPfHyWBa890eXhIngk+B7cfP+8Iyz+ehZ6SntOsVecYpwI1Zh8/1bqE35tZ0i6rAAgXHc7oXnpv/gFZQrGBQiynuXP6kAmpLhxI8hQijB3V5Dyz1k6vrigAGmye0YHkAUN94UHX7//6UoSdqYNP253jQ=
+      secure: "TAoqCYVptJwtiBibrFVKLTUBo8pnOl6jxNK1xSUSqmDw6UKuNzZcbFoNKWH7OMs72ekGKay0SJpHd8hSHEF85t7ogtlrHw9CtbyIOJBZPsIjp+hZmms8EeFw82z7P6DvrUrbdrrVurFea7nga5CxjllodbF4uhEx1OxWyIiYh+LJfhfeQOVOYyN6sShra6eOoZtmyQjfpisv2tMnTbNrItwi8uB8GPfsxY2sTesrjHb2gHLqgdTFTn0GE+nF+qb6TqmhZIoVGJjldotzLDeBpPtMe5a+B5WTibIr36MSAJGuu3uZj+YAwgQrKM0ux015AGRo3wRaOuZwLby71DWYTLwcb9EL1gXxflmAiSf9Znd2E+E/ssK9TVSQvLdkc59ZheBy9QbhNISKM9kOs3qScyORJsaPgflhWZnaV2SXybu0DdoWUKGJGGTHb2HwnGSqT4mUngir/DEtuZXaDxQI8ijAZbMRr7Tm+gEAFiM/KDCheMjnC+DQUcafnZjJJtY7bIMZ9DhHEjnGNSsJJYeGA+zLfiJOXjDFAvcOnGdfTaAjHxxoO+AvTF8Xkf5CGYfcgKxeIbkso8mr6QqWy7JjGCsXDa+Q/4er1zFg/IIgnbjhwcr6Q//cVOaGcbC2DgdCFiD06wG/vnU6czyS8T/waNe/ivHhEwmPbZZK/kZ5urg="
     skip_cleanup: true
     on:
       tags: true
