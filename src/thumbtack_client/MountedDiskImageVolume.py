@@ -27,6 +27,7 @@ class MountedDiskImageVolume(object):
         size : int
             The size of the volume in bytes.
         """
+
     def __init__(self, mounted_volume_obj):
         """Create a MountedDiskImageVolume object.
 
@@ -36,13 +37,13 @@ class MountedDiskImageVolume(object):
             This dictionary should be refactored into its individual components.
             It is defined in the resources.py file as `volume_fields`.
         """
-        self.fsdescription = mounted_volume_obj['fsdescription']
-        self.fstype = mounted_volume_obj['fstype']
-        self.index = mounted_volume_obj['index']
-        self.label = mounted_volume_obj['label']
-        self.mountpoint = mounted_volume_obj['mountpoint']
-        self.offset = mounted_volume_obj['offset']
-        self.size = mounted_volume_obj['size']
+        self.fsdescription = mounted_volume_obj["fsdescription"]
+        self.fstype = mounted_volume_obj["fstype"]
+        self.index = mounted_volume_obj["index"]
+        self.label = mounted_volume_obj["label"]
+        self.mountpoint = mounted_volume_obj["mountpoint"]
+        self.offset = mounted_volume_obj["offset"]
+        self.size = mounted_volume_obj["size"]
 
     def walk(self, file_filter=None):
         """Walks through every file in a given mountpoint directory.
@@ -109,20 +110,20 @@ class MountedDiskImageVolume(object):
             # Check for broken symlinks, observed on mounted NTFS reparse points
             if not os.path.exists(full_path):
                 skip_file = True
-                msg = 'Path does not exist (broken symlink?)'
+                msg = "Path does not exist (broken symlink?)"
 
             # Check for files that can't be read
             if not skip_file and not os.access(full_path, os.R_OK):
                 skip_file = True
-                msg = 'File not accessible for reading'
+                msg = "File not accessible for reading"
 
             # Ensure is regular file. Avoids named pipes, among other things
             if not skip_file and not stat.S_ISREG(os.stat(full_path).st_mode):
                 skip_file = True
-                msg = 'File is not a regular file'
+                msg = "File is not a regular file"
 
             if skip_file:
-                logger.info('Not processing mounted file "{}": {}'.format(full_path, msg))
+                logger.info(f'Not processing mounted file "{full_path}": {msg}')
                 continue
 
             yield (full_path, path_within_volume)

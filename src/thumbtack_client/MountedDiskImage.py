@@ -18,6 +18,7 @@ class MountedDiskImage(object):
         mounted_volumes : list thumbtack.resources.MountedDiskImageVolume
             This is a list of the MountedDiskImageVolume objects with a valid mountpoint.
         """
+
     def __init__(self, mounted_disk_obj):
         """Create a MountedDiskImage object.
 
@@ -27,7 +28,8 @@ class MountedDiskImage(object):
             This dictionary should be refactored into its individual components.
             It is defined in the resources.py file as `disk_fields`.
         """
-        self.mountpoint = mounted_disk_obj['mountpoint']
-        self.name = mounted_disk_obj['name']
-        self.volumes = [MountedDiskImageVolume(v) for v in mounted_disk_obj['volumes']]
-        self.mounted_volumes = [v for v in self.volumes if v.mountpoint]  # only volumes with a non-empty mountpoint
+        self.mountpoint = mounted_disk_obj["mountpoint"]
+        self.name = mounted_disk_obj["name"]
+        self.volumes = [MountedDiskImageVolume(v) for v in mounted_disk_obj["volumes"]]
+        # only volumes with a non-empty mountpoint
+        self.mounted_volumes = [v for v in self.volumes if v.mountpoint]

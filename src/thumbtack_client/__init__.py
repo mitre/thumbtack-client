@@ -27,19 +27,18 @@ class ThumbtackClient(object):
     Creates the ThumbtackClient object using the `requests.Session class <http://docs.python-requests.org/en/master/api/?highlight=session#request-sessions>`_
     so that its 'delete', 'get', and 'put' methods can be used to send requests.
     """
-    def __init__(self, host='127.0.0.1', port=8208):
+
+    def __init__(self, url="http://127.0.0.1:8208"):
         """
         Initializes the ThumbtackClient object with the `requests.Session class <http://docs.python-requests.org/en/master/api/?highlight=session#request-sessions>`_
 
         Parameters
         ----------
-        host : str
-            default host address is 127.0.0.1
-        port: int
-            default port is 8208
+        url : str
+            default url is http://127.0.0.1:8208
         """
         self.session = requests.Session()
-        self._host = '{}:{}'.format(host, port)
+        self._url = url
 
     def list_mounted_images(self):
         """
@@ -48,7 +47,7 @@ class ThumbtackClient(object):
         dict
             A JSON serialized dictionary of all mounted images in: 'http://127.0.0.1:8208/mounts/'
         """
-        url = 'http://{}/mounts/'.format(self._host)
+        url = f"{self._url}/mounts/"
         response = self._get(url, expected_status=200)
         return response.json()
 
@@ -64,7 +63,7 @@ class ThumbtackClient(object):
         dict
             requests.Response object : the result of the request.response object with the 'put' method applied
         """
-        url = 'http://{}/mounts/{}'.format(self._host, image_path.lstrip('/'))
+        url = f"{self._url}/mounts/{image_path.lstrip('/')}"
         response = self._put(url, expected_status=200)
         return response.json()
 
@@ -81,18 +80,18 @@ class ThumbtackClient(object):
         dict
             requests.Response object : the result of the request.response object with the 'delete' method applied
         """
-        url = 'http://{}/mounts/{}'.format(self._host, image_path.lstrip('/'))
+        url = f"{self._url}/mounts/{image_path.lstrip('/')}"
         response = self._delete(url, expected_status=200)
         return response.json()
 
     def _put(self, url, expected_status=None, **kwargs):
-        return self._do_method_checked('put', url, expected_status, **kwargs)
+        return self._do_method_checked("put", url, expected_status, **kwargs)
 
     def _get(self, url, expected_status=None, **kwargs):
-        return self._do_method_checked('get', url, expected_status, **kwargs)
+        return self._do_method_checked("get", url, expected_status, **kwargs)
 
     def _delete(self, url, expected_status=None, **kwargs):
-        return self._do_method_checked('delete', url, expected_status, **kwargs)
+        return self._do_method_checked("delete", url, expected_status, **kwargs)
 
     def _do_method_checked(self, method, url, expected_status, **kwargs):
         """This checks that the received response to the requested method was successful, otherwise
@@ -121,13 +120,12 @@ class ThumbtackClient(object):
         except requests.ConnectionError as e:
             raise ThumbtackClientException(str(e))
         if expected_status is not None:
-            if not hasattr(expected_status, '__iter__'):
+            if not hasattr(expected_status, "__iter__"):
                 expected_status = [expected_status]
 
             if response.status_code not in expected_status:
-                msg = 'Unexpected status {} from {} ({}); expected {}' \
-                    .format(response.status_code, response.url, response.request.method, expected_status)
+                msg = f"Unexpected status {response.status_code} from {response.url} ({response.request.method}); expected {expected_status}"
                 if response.text:
-                    msg += ' - response text: {}'.format(response.text)
+                    msg += f" - response text: {response.text}"
                 raise ThumbtackClientException(msg)
         return response
