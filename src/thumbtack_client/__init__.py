@@ -1,4 +1,4 @@
-# Copyright 2019 The MITRE CORPORATION
+# Copyright 2021 The MITRE CORPORATION
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 import logging
 
 import requests
+import json
 
 from thumbtack_client import ThumbtackClientException
 from thumbtack_client.ThumbtackClientException import ThumbtackClientException
@@ -126,6 +127,7 @@ class ThumbtackClient(object):
             if response.status_code not in expected_status:
                 msg = f"Unexpected status {response.status_code} from {response.url} ({response.request.method}); expected {expected_status}"
                 if response.text:
-                    msg += f" - response text: {response.text}"
+                    msg_text = json.loads(response.text)['message']
+                    msg += f" - response text: {msg_text}" 
                 raise ThumbtackClientException(msg)
         return response
