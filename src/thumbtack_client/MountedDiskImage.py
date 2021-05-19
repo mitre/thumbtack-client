@@ -31,5 +31,9 @@ class MountedDiskImage(object):
         self.mountpoint = mounted_disk_obj["mountpoint"]
         self.name = mounted_disk_obj["name"]
         self.volumes = [MountedDiskImageVolume(v) for v in mounted_disk_obj["volumes"]]
+        if mounted_disk_obj["paths"] is not None and "nbd" in mounted_disk_obj["paths"].keys():
+            self.device = mounted_disk_obj["paths"]["nbd"]
+        else:
+            self.device = None
         # only volumes with a non-empty mountpoint
         self.mounted_volumes = [v for v in self.volumes if v.mountpoint]
