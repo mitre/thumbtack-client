@@ -52,7 +52,7 @@ class MountedDiskImageVolume(object):
         ----------
         file_filter : callable, optional
             A callable that accepts `mounted_file_path_on_disk` and returns a boolean
-            of whether to yield that file.  For example, you can call
+            of whether to yield that file. For example, you can call
             `volume.walk(lambda x: x.endswith(".exe"))` to find all of the files
             with the `.exe` extension.
 
@@ -80,8 +80,8 @@ class MountedDiskImageVolume(object):
                 full_path = os.path.join(dirpath, f)
                 if file_filter is None or file_filter(full_path):
                     # remove mounted prefix; eg '/tmp/thumbtack/im_x30_s3s'
-                    path_within_volume = os.path.join(*full_path.split(os.path.sep)[4:])
-                    yield (full_path, path_within_volume)
+                    path_within_volume = os.path.relpath(full_path, start=self.mountpoint)
+                    yield full_path, path_within_volume
 
     def safe_walk(self, file_filter=None):
         """Walks through every file in a given mountpoint directory, skipping broken files.
