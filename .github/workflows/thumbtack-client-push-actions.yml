@@ -4,6 +4,13 @@ jobs:
   test-and-build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set tag variable
+        run: echo "REF_END=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test
+        run: |
+          echo $GITHUB_REF
+          echo $REF_END
+          echo ${{ env.REF_END }}
       - name: Setup python
         uses: actions/setup-python@v2
         with:
