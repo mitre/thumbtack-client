@@ -17,4 +17,4 @@ jobs:
       - name: Run tests
         run: pytest
       - name: Build wheel
-        run: python setup.py sdist bdist_wheel
+        run: pip install wheel && python setup.py sdist bdist_wheel
