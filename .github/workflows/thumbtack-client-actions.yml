@@ -44,7 +44,8 @@ jobs:
         run: pip install wheel && python setup.py sdist bdist_wheel
       - name: release
         uses: actions/create-release@v1
-        env: GITHUB_TOKEN: "psW6in+WWiDkdGZTrX/kAAeIh5QnZtgdk8hV0O6NbBDkCkZoV6vx22oHxjc4ty/VEQ1XlA566cbdwjevy8xkgaeuzSSaX1uyEcVMpmUOQlYSUXHfCg89ea9RGjzJtKo5jHKH9Q9ylPzDHH5rZRpVYhUPMvglUhmyEZEOmJm5l9gQ1cgaBR1zgLBkUSfmceLz5ha5pwb6hjGzS20pPKQA3qC8uwq7bg38vXtjJFIGd/WNakDIB0uHDjZn9cKYf9HV1CcmLmmxrGXgVk8ke3JmMR3SOuzuOwpqjFPagYzjVdQtEfBrCkpYc/IEUmHbZHDUbgXj96SYNHENFVrrMY2NSjsG0FGsBGvzaGxUZb7miJG1vFc1Cs0VUrkGAqh/kY2FoBDj62GlEgcZuBsaVVCtGBwfnsUm6L2tqD2HP/TD775Qhz7OUl/9956Cqnyn1BE6Wj2qyvBb8hbZSzAurGUHX/re0yQyx6mMHvT7b1S9EdEBl2/13di0lzd6qKYkDFRNPxOHBuURW9aSQjnypOezdx53NStYdBnpbbEOlgwvSpxBE3jid95AoQqJz8rftsiiB0Jhjabnsj2q7GtuRyLvwyDeygETnNAABemB9UZ4PPq140zS1BzLLKCUhxhsI2AXwiJm0UmY1t6bRMRsXvv5IDS54eS0x78DNPHZz4hyXxY="
+        env:
+          GITHUB_TOKEN: "psW6in+WWiDkdGZTrX/kAAeIh5QnZtgdk8hV0O6NbBDkCkZoV6vx22oHxjc4ty/VEQ1XlA566cbdwjevy8xkgaeuzSSaX1uyEcVMpmUOQlYSUXHfCg89ea9RGjzJtKo5jHKH9Q9ylPzDHH5rZRpVYhUPMvglUhmyEZEOmJm5l9gQ1cgaBR1zgLBkUSfmceLz5ha5pwb6hjGzS20pPKQA3qC8uwq7bg38vXtjJFIGd/WNakDIB0uHDjZn9cKYf9HV1CcmLmmxrGXgVk8ke3JmMR3SOuzuOwpqjFPagYzjVdQtEfBrCkpYc/IEUmHbZHDUbgXj96SYNHENFVrrMY2NSjsG0FGsBGvzaGxUZb7miJG1vFc1Cs0VUrkGAqh/kY2FoBDj62GlEgcZuBsaVVCtGBwfnsUm6L2tqD2HP/TD775Qhz7OUl/9956Cqnyn1BE6Wj2qyvBb8hbZSzAurGUHX/re0yQyx6mMHvT7b1S9EdEBl2/13di0lzd6qKYkDFRNPxOHBuURW9aSQjnypOezdx53NStYdBnpbbEOlgwvSpxBE3jid95AoQqJz8rftsiiB0Jhjabnsj2q7GtuRyLvwyDeygETnNAABemB9UZ4PPq140zS1BzLLKCUhxhsI2AXwiJm0UmY1t6bRMRsXvv5IDS54eS0x78DNPHZz4hyXxY="
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
