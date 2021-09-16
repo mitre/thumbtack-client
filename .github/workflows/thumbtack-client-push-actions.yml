@@ -1,7 +1,7 @@
 name: thumbtack-client-test-build
 on: [push]
 jobs:
-  build:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
       - name: Setup python

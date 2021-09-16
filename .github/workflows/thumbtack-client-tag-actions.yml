@@ -4,7 +4,7 @@ on:
     tags:
       - '*'
 jobs:
-  build:
+  test-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Setup python
