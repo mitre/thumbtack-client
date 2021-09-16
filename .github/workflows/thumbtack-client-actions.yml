@@ -1,4 +1,4 @@
-name: thumbtack-client-actions
+name: thumbtack-client-test-build
 on: [push]
 jobs:
   build:
@@ -18,3 +18,35 @@ jobs:
         run: pytest
       - name: Build wheel
         run: pip install wheel && python setup.py sdist bdist_wheel
+
+name: thumbtack-client-test-build-deploy
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: pip install
+        run: pip install -r requirements.txt && pip install -e .
+      - name: Run tests
+        run: pytest
+      - name: Build wheel
+        run: pip install wheel && python setup.py sdist bdist_wheel
+      - name: release
+        uses: actions/create-release@v1
+        env: GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
