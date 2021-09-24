@@ -1,0 +1,27 @@
+name: thumbtack-client-test-build-deploy
+on: [push]
+jobs:
+  test-build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: pip install
+        run: pip install -r requirements.txt && pip install -e .
+      - name: Run tests
+        run: pytest
+      - name: Build wheel
+        run: pip install wheel && python setup.py sdist bdist_wheel
+      - name: Push to PyPI
+        if: startsWith(github.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: ${{ secrets.PYPI_USERNAME }}
+          password: ${{ secrets.PYPI_TOKEN_THUMBTACK_CLIENT }}
+ 
