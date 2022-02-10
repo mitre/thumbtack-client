@@ -45,8 +45,8 @@ class ThumbtackClient(object):
         """
         Returns
         -------
-        dict
-            A JSON serialized dictionary of all mounted images in: 'http://127.0.0.1:8208/mounts/'
+        list
+            A list of JSON serialized dictionaries of all mounted images in: 'http://127.0.0.1:8208/mounts/'
         """
         url = f"{self._url}/mounts/"
         response = self._get(url, expected_status=200)
@@ -56,8 +56,8 @@ class ThumbtackClient(object):
         """
         Returns
         -------
-        dict
-            A JSON serialized dictionary of all images in: 'http://127.0.0.1:8208/images'
+        list
+            A list of JSON serialized dictionaries of all images in: 'http://127.0.0.1:8208/images'
         """
         url = f"{self._url}/images"
         response = self._get(url, expected_status=200)
