@@ -52,6 +52,17 @@ class ThumbtackClient(object):
         response = self._get(url, expected_status=200)
         return response.json()
 
+    def list_images(self):
+        """
+        Returns
+        -------
+        dict
+            A JSON serialized dictionary of all images in: 'http://127.0.0.1:8208/images/'
+        """
+        url = f"{self._url}/images"
+        response = self._get(url, expected_status=200)
+        return response.json()
+
     def mount_image(self, image_path):
         """
         Parameters
