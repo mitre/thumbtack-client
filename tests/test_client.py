@@ -13,6 +13,19 @@ def client():
 def test_smoke():
     assert thumbtack_client.MountedDiskImage.MountedDiskImage is not None
 
+@responses.activate
+def test_list_images_empty(client):
+    responses.add(responses.GET, 'http://127.0.0.1:8208/images', '[]')
+
+    response = client.list_images()
+    assert response == []
+
+@responses.activate
+def test_list_images_populated(client):
+    responses.add(responses.GET, 'http://127.0.0.1:8208/images', '[1, 2, 3]')
+
+    response = client.list_images()
+    assert len(response) > 0
 
 @responses.activate
 def test_list_mounts_empty(client):
