@@ -96,6 +96,23 @@ class ThumbtackClient(object):
         response = self._delete(url, expected_status=200)
         return response.json()
 
+    def update_image_dir(self, image_dir):
+        """
+        Parameters
+        ----------
+        image_dir : str
+            the new directory to monitor
+
+        Returns
+        -------
+        dict
+            requests.Response object : the result of the request.response object with the 'put' method applied
+        """
+        url = f"{self._url}/image_dir"
+        image_dir_dict = {"image_dir": image_dir}
+        response = self._put(url, expected_status=200, params=image_dir_dict)
+        return response.json()
+
     def _put(self, url, expected_status=None, **kwargs):
         return self._do_method_checked("put", url, expected_status, **kwargs)
 
