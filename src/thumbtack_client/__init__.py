@@ -76,7 +76,8 @@ class ThumbtackClient(object):
             requests.Response object : the result of the request.response object with the 'put' method applied
         """
         url = f"{self._url}/mounts/{image_path.lstrip('/')}"
-        if creds_mapping := self.create_key(creds):
+        creds_mapping = self.create_key(creds)
+        if creds_mapping:
             response = self._put(url, expected_status=200, params=creds_mapping)
         else:
             response = self._put(url, expected_status=200)
