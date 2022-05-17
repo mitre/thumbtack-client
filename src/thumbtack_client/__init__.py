@@ -63,7 +63,7 @@ class ThumbtackClient(object):
         response = self._get(url, expected_status=200)
         return response.json()
 
-    def mount_image(self, image_path):
+    def mount_image(self, image_path, creds=None):
         """
         Parameters
         ----------
@@ -76,7 +76,11 @@ class ThumbtackClient(object):
             requests.Response object : the result of the request.response object with the 'put' method applied
         """
         url = f"{self._url}/mounts/{image_path.lstrip('/')}"
-        response = self._put(url, expected_status=200)
+        creds_mapping = self.create_key(creds)
+        if creds_mapping:
+            response = self._put(url, expected_status=200, params=creds_mapping)
+        else:
+            response = self._put(url, expected_status=200)
         return response.json()
 
     def unmount_image(self, image_path):
@@ -112,6 +116,29 @@ class ThumbtackClient(object):
         image_dir_dict = {"image_dir": image_dir}
         response = self._put(url, expected_status=200, params=image_dir_dict)
         return response.json()
+
+    def create_key(self, creds):
+        method = None
+        key = None
+        key_full = None
+
+        if not creds:
+            return None
+
+        if creds["type"] == "luks":
+            method = creds["authentication_method"]
+            if method == "password":
+                method_short = "p"
+                key = creds["authentication_value"]
+            elif method == "startup_key_filepath":
+                method_short = "m"
+                key = creds["luks_startup_key_filepath"]
+            elif method == "fvek":
+                method_short = "f"
+                key = creds["luks_fvek"]
+
+        key_full = {"key": f"{method_short}:{key}"}
+        return key_full
 
     def _put(self, url, expected_status=None, **kwargs):
         return self._do_method_checked("put", url, expected_status, **kwargs)
