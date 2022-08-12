@@ -117,6 +117,17 @@ class ThumbtackClient(object):
         response = self._put(url, expected_status=200, params=image_dir_dict)
         return response.json()
 
+    def get_image_dir(self):
+        """
+        Returns
+        -------
+        string
+            A string of the current directory being monitored.
+        """
+        url = f"{self._url}/image_dir"
+        response = self._get(url, expected_status=200)
+        return response.json()
+
     def create_key(self, creds):
         method = None
         key = None
