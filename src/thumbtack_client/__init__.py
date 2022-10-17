@@ -19,6 +19,7 @@ import json
 
 from thumbtack_client import ThumbtackClientException
 from thumbtack_client.ThumbtackClientException import ThumbtackClientException
+from thumbtack_client.DuplicateMountAttemptException import DuplicateMountAttemptException
 
 logger = logging.getLogger(__name__)
 
@@ -195,5 +196,8 @@ class ThumbtackClient(object):
                 if response.text:
                     msg_text = json.loads(response.text)['message']
                     msg += f" - response text: {msg_text}" 
-                raise ThumbtackClientException(msg)
+                if "Mount attempt is already in progress for this image." in msg_text:
+                    raise DuplicateMountAttemptException(msg)
+                else:
+                    raise ThumbtackClientException(msg)
         return response

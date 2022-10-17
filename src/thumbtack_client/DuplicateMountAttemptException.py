@@ -1,0 +1,2 @@
+class DuplicateMountAttemptException(Exception):
+    pass
