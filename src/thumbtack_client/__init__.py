@@ -84,6 +84,28 @@ class ThumbtackClient(object):
             response = self._put(url, expected_status=200)
         return response.json()
 
+    def add_mountpoint(self, image_path=None, mountpoint_path=None):
+        """
+        Parameters
+        ----------
+        image_path : str
+            file path of the disk image
+        mountpoint_path : str
+            absolute path of the mountpoint
+
+        Returns
+        -------
+        dict
+            requests.Response object : the result of the request.response object with the 'put' method applied
+        """
+        url = f"{self._url}/add_mountpoint"
+        params = {
+            "image_path": image_path,
+            "mountpoint_path": mountpoint_path,
+        }
+        response = self._put(url, expected_status=200, params=params)
+        return response.json()
+
     def unmount_image(self, image_path):
         """Deletes supplied image from list of mounted images
 
