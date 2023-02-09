@@ -164,7 +164,7 @@ class ThumbtackClient(object):
             if method == "password":
                 method_short = "p"
                 key = creds["authentication_value"]
-	    elif method == "recovery_key":
+            elif method == "recovery_key":
                 method_short = "r"
                 key = creds["bitlocker_recovery_key"]
             elif method == "startup_key_filepath":
