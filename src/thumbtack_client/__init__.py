@@ -174,7 +174,7 @@ class ThumbtackClient(object):
                 method_short = "k"
                 key = creds["bitlocker_fvek"]
 
-	if creds["type"] == "luks":
+        if creds["type"] == "luks":
             method = creds["authentication_method"]
             if method == "password":
                 method_short = "p"
