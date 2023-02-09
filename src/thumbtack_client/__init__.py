@@ -159,8 +159,8 @@ class ThumbtackClient(object):
         if not creds:
             return None
 
-	if creds["type"] == "bitlocker":
-	    method = creds["authentication_method"]
+        if creds["type"] == "bitlocker":
+            method = creds["authentication_method"]
             if method == "password":
                 method_short = "p"
                 key = creds["authentication_value"]
