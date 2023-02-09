@@ -159,6 +159,21 @@ class ThumbtackClient(object):
         if not creds:
             return None
 
+        if creds["type"] == "bitlocker":
+            method = creds["authentication_method"]
+            if method == "password":
+                method_short = "p"
+                key = creds["authentication_value"]
+            elif method == "recovery_key":
+                method_short = "r"
+                key = creds["bitlocker_recovery_key"]
+            elif method == "startup_key_filepath":
+                method_short = "s"
+                key = creds["bitlocker_startup_key_filepath"]
+            elif method == "fvek":
+                method_short = "k"
+                key = creds["bitlocker_fvek"]
+
         if creds["type"] == "luks":
             method = creds["authentication_method"]
             if method == "password":
