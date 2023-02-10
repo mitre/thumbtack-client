@@ -179,12 +179,12 @@ class ThumbtackClient(object):
             if method == "password":
                 method_short = "p"
                 key = creds["authentication_value"]
-            elif method == "startup_key_filepath":
-                method_short = "m"
-                key = creds["luks_startup_key_filepath"]
-            elif method == "fvek":
+            elif method == "key_file":
                 method_short = "f"
-                key = creds["luks_fvek"]
+                key = creds["luks_key_file"]
+            elif method == "master_key_file":
+                method_short = "m"
+                key = creds["luks_master_key_file"]
 
         key_full = {"key": f"{method_short}:{key}"}
         return key_full
