@@ -4,8 +4,8 @@ project = "thumbtack-client"
 copyright = "2019, The MITRE Corporation"
 author = "The MITRE Corporation"
 
-version = "0.3.0"
-release = "0.3.0"
+version = "0.4.0"
+release = "0.4.0"
 
 extensions = [
     "sphinx.ext.autodoc",
